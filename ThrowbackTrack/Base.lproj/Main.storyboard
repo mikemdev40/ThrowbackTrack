@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="ThrowbackTrack" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fy8-4m-bhz">
+                                <rect key="frame" x="238" y="259" width="177" height="161"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Log in to Spotify" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wGf-t7-PJE">
+                                        <rect key="frame" x="26" y="0.0" width="125" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CPm-bh-MVv">
+                                        <rect key="frame" x="29" y="21" width="119" height="30"/>
+                                        <state key="normal" title="Get access token"/>
+                                        <connections>
+                                            <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="O73-8L-Qb9"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yjF-Ji-aCl">
+                                        <rect key="frame" x="68" y="51" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1LD-g1-Hko">
+                                        <rect key="frame" x="29" y="71" width="120" height="30"/>
+                                        <state key="normal" title="Get refresh token"/>
+                                        <connections>
+                                            <action selector="getRefresh:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Z0P-Lj-BWw"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MnL-Cy-aDc">
+                                        <rect key="frame" x="0.0" y="101" width="177" height="30"/>
+                                        <state key="normal" title="Access Spotify with token"/>
+                                        <connections>
+                                            <action selector="accessSpotify:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kiK-c5-ytP"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3XW-kv-cOd">
+                                        <rect key="frame" x="58" y="131" width="62" height="30"/>
+                                        <state key="normal" title="LOGOUT"/>
+                                        <connections>
+                                            <action selector="logout:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Egc-WM-XTv"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pyZ-KV-jrL">
+                                <rect key="frame" x="307" y="447" width="38" height="30"/>
+                                <state key="normal" title="&gt;&gt;&gt;&gt;"/>
+                                <connections>
+                                    <segue destination="rxP-g7-pSz" kind="show" id="Tzf-qW-UWM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fy8-4m-bhz" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="4cZ-rQ-ZL4"/>
+                            <constraint firstItem="pyZ-KV-jrL" firstAttribute="top" secondItem="fy8-4m-bhz" secondAttribute="bottom" constant="27" id="Wbs-JW-Zmz"/>
+                            <constraint firstItem="fy8-4m-bhz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="X1V-5g-1XU"/>
+                            <constraint firstItem="pyZ-KV-jrL" firstAttribute="centerX" secondItem="fy8-4m-bhz" secondAttribute="centerX" id="mw6-9U-zDB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="messageLabel" destination="yjF-Ji-aCl" id="W7h-tI-FEO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="641" y="510"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="cBt-e6-LOa">
+            <objects>
+                <viewController id="rxP-g7-pSz" customClass="SearchViewController" customModule="ThrowbackTrack" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TDI-QY-e9G"/>
+                        <viewControllerLayoutGuide type="bottom" id="oNB-aB-nVO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rkf-vU-Bye">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Z8-5b-rmD">
+                                <rect key="frame" x="276" y="28" width="48" height="30"/>
+                                <state key="normal" title="&lt;&lt;&lt;&lt;&lt;"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="CRa-Ly-mHR"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="SZz-VI-SoT">
+                                <rect key="frame" x="255" y="166" width="90" height="240"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="year 1" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nFU-8l-9xq">
+                                        <rect key="frame" x="0.0" y="0.0" width="90" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="year 2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aTA-d6-jca">
+                                        <rect key="frame" x="0.0" y="30" width="90" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="keyword" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kBo-Mv-pfi">
+                                        <rect key="frame" x="0.0" y="60" width="90" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="genre" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gkX-jm-ceT">
+                                        <rect key="frame" x="0.0" y="90" width="90" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I09-pM-T0I">
+                                        <rect key="frame" x="0.0" y="120" width="90" height="30"/>
+                                        <state key="normal" title="Search Years"/>
+                                        <connections>
+                                            <action selector="searchYears:" destination="rxP-g7-pSz" eventType="touchUpInside" id="Fnd-df-z23"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EsG-j6-Zup">
+                                        <rect key="frame" x="24" y="150" width="43" height="30"/>
+                                        <state key="normal" title="MORE"/>
+                                        <connections>
+                                            <action selector="getMore:" destination="rxP-g7-pSz" eventType="touchUpInside" id="1ug-B0-u6Y"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s93-B7-3Le">
+                                        <rect key="frame" x="2" y="180" width="86" height="30"/>
+                                        <state key="normal" title="Search Recs"/>
+                                        <connections>
+                                            <action selector="search:" destination="rxP-g7-pSz" eventType="touchUpInside" id="rtj-dj-OCw"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pUa-lo-6dv">
+                                        <rect key="frame" x="22" y="210" width="47" height="30"/>
+                                        <state key="normal" title="genres"/>
+                                        <connections>
+                                            <action selector="genres:" destination="rxP-g7-pSz" eventType="touchUpInside" id="rvG-Uv-Bpr"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="kBo-Mv-pfi" firstAttribute="width" secondItem="aTA-d6-jca" secondAttribute="width" id="Kkp-Tk-EDk"/>
+                                    <constraint firstItem="nFU-8l-9xq" firstAttribute="width" secondItem="aTA-d6-jca" secondAttribute="width" id="VHk-7u-7ru"/>
+                                    <constraint firstItem="aTA-d6-jca" firstAttribute="width" secondItem="I09-pM-T0I" secondAttribute="width" id="ZqV-2o-5cT"/>
+                                    <constraint firstItem="gkX-jm-ceT" firstAttribute="width" secondItem="kBo-Mv-pfi" secondAttribute="width" id="tk6-M9-zUf"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1Z8-5b-rmD" firstAttribute="top" secondItem="TDI-QY-e9G" secondAttribute="bottom" constant="8" id="Kek-CA-9lK"/>
+                            <constraint firstItem="SZz-VI-SoT" firstAttribute="centerY" secondItem="rkf-vU-Bye" secondAttribute="centerY" id="nZp-Ng-OUr"/>
+                            <constraint firstItem="1Z8-5b-rmD" firstAttribute="centerX" secondItem="rkf-vU-Bye" secondAttribute="centerX" id="pap-kR-adE"/>
+                            <constraint firstItem="SZz-VI-SoT" firstAttribute="centerX" secondItem="rkf-vU-Bye" secondAttribute="centerX" id="qkf-Hh-xR6"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="genre" destination="gkX-jm-ceT" id="Rgp-22-eDy"/>
+                        <outlet property="keyword" destination="kBo-Mv-pfi" id="S7x-d7-TvB"/>
+                        <outlet property="year1" destination="nFU-8l-9xq" id="wKa-zy-Z8b"/>
+                        <outlet property="year2" destination="aTA-d6-jca" id="RMw-ks-Gij"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yGq-k7-pAo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1400" y="503"/>
+        </scene>
+    </scenes>
+</document>

@@ -30,5 +30,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
         return true
     }
+    
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+        
+        if SpotifyLoginClient.sharedClient.expired {
+            if let _ = SpotifyLoginClient.sharedClient.accessToken {
+                SpotifyLoginClient.sharedClient.refreshToken({ (success, error) in
+                    if success {
+                        print("refresh token: SUCESS!")
+                    } else {
+                        print(error)
+                    }
+                })
+            } else {
+                let authVC = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier(Constants.LoginViewConstants.AuthenticationVCName)
+                window?.rootViewController = authVC
+            }
+        }
+        return true
+    }
+    
 }
 

@@ -100,5 +100,6 @@ struct Constants {
     
     struct LoginViewConstants {
         static let DismissSafariWindowNotification = "dismissSafariWindowAfterAuthReceived"
+        static let AuthenticationVCName = "AuthenticationVC"
     }
 }

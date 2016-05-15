@@ -132,7 +132,8 @@ class SpotifyLoginClient {
                 return
             }
             
-            self.saveAccessInfo(access, refresh: refresh, timer: timer)            
+            self.saveAccessInfo(access, refresh: refresh, timer: timer)
+            completionHandler(success: true, error: nil)
         }
         
         task.resume()
@@ -204,7 +205,7 @@ class SpotifyLoginClient {
         session.finishTasksAndInvalidate()
     }
     
-    func saveAccessInfo(access: String?, refresh: String?, timer: Int?) {
+    private func saveAccessInfo(access: String?, refresh: String?, timer: Int?) {
         if access != nil {
             NSUserDefaults.standardUserDefaults().setObject(access!, forKey: "accessToken")
         } else {
@@ -231,7 +232,7 @@ class SpotifyLoginClient {
         print("logged out")
     }
     
-    func getAccessToken() -> String? {
+    private func getAccessToken() -> String? {
         if let access = NSUserDefaults.standardUserDefaults().objectForKey("accessToken") as? String {
             return access
         } else {
@@ -239,7 +240,7 @@ class SpotifyLoginClient {
         }
     }
     
-    func getRefreshToken() -> String? {
+    private func getRefreshToken() -> String? {
         if let refresh = NSUserDefaults.standardUserDefaults().objectForKey("refreshToken") as? String {
             return refresh
         } else {
@@ -247,7 +248,7 @@ class SpotifyLoginClient {
         }
     }
     
-    func hasExpired() -> Bool {
+    private func hasExpired() -> Bool {
         
         guard let dateSaved = NSUserDefaults.standardUserDefaults().objectForKey("dateSaved") as? NSDate else {
             return true
@@ -258,12 +259,11 @@ class SpotifyLoginClient {
         }
         //date comparison: http://stackoverflow.com/questions/26198526/nsdate-comparison-using-swift
         let expiresAt = dateSaved.dateByAddingTimeInterval(Double(expiryTimeInSeconds))
-        print(dateSaved)
-        print(expiresAt)
+        
         return NSDate().compare(expiresAt) == .OrderedDescending
     }
     
-    func getRandomState() -> String {
+    private func getRandomState() -> String {
         let state = NSUUID().UUIDString
         stateValue = state
         return state

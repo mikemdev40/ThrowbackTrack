@@ -19,6 +19,8 @@
 		7A0398FB1CE7662C007ABBB7 /* SpotifyRecommender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0398FA1CE7662C007ABBB7 /* SpotifyRecommender.swift */; };
 		7A0398FD1CE767B9007ABBB7 /* SpotifyMusicGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0398FC1CE767B9007ABBB7 /* SpotifyMusicGetter.swift */; };
 		7A0398FF1CE76FBD007ABBB7 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0398FE1CE76FBD007ABBB7 /* Config.swift */; };
+		7A7998A41CE8F3220095CB8D /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7998A31CE8F3220095CB8D /* AuthenticationViewController.swift */; };
+		7A7998A61CE8F3800095CB8D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7998A51CE8F3800095CB8D /* TabBarController.swift */; };
 		7AFFCD041CD9A8CC009E267E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFFCD031CD9A8CC009E267E /* AppDelegate.swift */; };
 		7AFFCD061CD9A8CC009E267E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFFCD051CD9A8CC009E267E /* LoginViewController.swift */; };
 		7AFFCD091CD9A8CC009E267E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AFFCD071CD9A8CC009E267E /* Main.storyboard */; };
@@ -39,6 +41,8 @@
 		7A0398FA1CE7662C007ABBB7 /* SpotifyRecommender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyRecommender.swift; sourceTree = "<group>"; };
 		7A0398FC1CE767B9007ABBB7 /* SpotifyMusicGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyMusicGetter.swift; sourceTree = "<group>"; };
 		7A0398FE1CE76FBD007ABBB7 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		7A7998A31CE8F3220095CB8D /* AuthenticationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
+		7A7998A51CE8F3800095CB8D /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		7AFFCD001CD9A8CB009E267E /* ThrowbackTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThrowbackTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AFFCD031CD9A8CC009E267E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AFFCD051CD9A8CC009E267E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -62,7 +66,8 @@
 		7A0398E01CDCB0AD007ABBB7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7AFFCD051CD9A8CC009E267E /* LoginViewController.swift */,
+				7A7998A31CE8F3220095CB8D /* AuthenticationViewController.swift */,
+				7A7998A51CE8F3800095CB8D /* TabBarController.swift */,
 				7A0398EB1CE2CAD4007ABBB7 /* SearchViewController.swift */,
 			);
 			name = Controllers;
@@ -124,6 +129,7 @@
 				7A0398E21CDCB0BE007ABBB7 /* View */,
 				7A0398E01CDCB0AD007ABBB7 /* Controllers */,
 				7AFFCD071CD9A8CC009E267E /* Main.storyboard */,
+				7AFFCD051CD9A8CC009E267E /* LoginViewController.swift */,
 				7AFFCD031CD9A8CC009E267E /* AppDelegate.swift */,
 				7AFFCD0A1CD9A8CC009E267E /* Assets.xcassets */,
 				7AFFCD0C1CD9A8CC009E267E /* LaunchScreen.storyboard */,
@@ -204,12 +210,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A0398EC1CE2CAD4007ABBB7 /* SearchViewController.swift in Sources */,
+				7A7998A61CE8F3800095CB8D /* TabBarController.swift in Sources */,
 				7A0398F21CE698DA007ABBB7 /* Image.swift in Sources */,
 				7AFFCD061CD9A8CC009E267E /* LoginViewController.swift in Sources */,
 				7A0398FF1CE76FBD007ABBB7 /* Config.swift in Sources */,
 				7AFFCD041CD9A8CC009E267E /* AppDelegate.swift in Sources */,
 				7A0398F81CE76539007ABBB7 /* NetworkFunctions.swift in Sources */,
 				7A0398E41CDEC827007ABBB7 /* Constants.swift in Sources */,
+				7A7998A41CE8F3220095CB8D /* AuthenticationViewController.swift in Sources */,
 				7A0398FB1CE7662C007ABBB7 /* SpotifyRecommender.swift in Sources */,
 				7A0398FD1CE767B9007ABBB7 /* SpotifyMusicGetter.swift in Sources */,
 				7A0398F61CE763E6007ABBB7 /* SpotifyPlaylistManager.swift in Sources */,

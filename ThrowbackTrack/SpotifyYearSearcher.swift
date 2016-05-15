@@ -223,7 +223,7 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
                 
                 for (key, _) in tracks.enumerate() {
                     tracks[key].albumObject = parsedAlbums[key]
-                    print("\(tracks[key].artists[0].name) \(tracks[key].track.name) \(tracks[key].albumObject?.releaseDate)")
+                    print("\(tracks[key].artists[0].name) \(tracks[key].track.name) \(tracks[key].track.id) \(tracks[key].albumObject?.releaseDate)")
                 }
 //                parsedAlbums.sortInPlace({ (element1, element2) -> Bool in
 //                    guard let release1 = element1.releaseDate, let release2 = element2.releaseDate else {

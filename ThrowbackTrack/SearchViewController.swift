@@ -30,7 +30,7 @@ class SearchViewController: UIViewController {
         
         //CHECK FOR ACTIVE TOKEN, AND IF NOT, AUTOREFRESH TOKEN BEFORE PERFORMING THE SEARCH
 
-        SpotifyRecommender.sharedInstance.getRecommendations { (success, error) in
+        SpotifyRecommender.sharedInstance.getRecommendations(keyword.text!) { (success, error) in
             print(success)
         }
         

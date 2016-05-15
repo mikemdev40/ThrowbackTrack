@@ -43,6 +43,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         print("refresh token: SUCESS!")
                     } else {
                         print(error)
+                        
+                        
+                        //SHOW LOGIN SCREEN AND SHOW ERROR
+                        
+                        
                     }
                 })
             } else {

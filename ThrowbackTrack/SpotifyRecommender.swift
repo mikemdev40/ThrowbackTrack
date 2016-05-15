@@ -12,9 +12,9 @@ class SpotifyRecommender: SpotifyMusicGetter {
     
     static let sharedInstance = SpotifyRecommender()
     
-    func getRecommendations(completionHandler: (success: Bool, error: String?) -> Void) {
+    func getRecommendations(seedTrack: String, completionHandler: (success: Bool, error: String?) -> Void) {
         
-        let parameters: [String: String] = ["seed_artists": "3fMbdgg4jU18AjLCKBhRSm", "min_popularity": "30", "limit": "100", "seed_genre": "pop"]
+        let parameters: [String: String] = ["seed_tracks": seedTrack, "min_popularity": "30", "limit": "100"]
         
         let nsurl = getNSURLFromComponents("https", host: "api.spotify.com", path: "/v1/recommendations", parameters: parameters)
         

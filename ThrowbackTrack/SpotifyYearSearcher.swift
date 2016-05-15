@@ -62,13 +62,12 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
             if let tracks = parsedData["tracks"] as? [String: AnyObject] {
                 if let trackItems = tracks["items"] as? [[String: AnyObject]] {
                     var parsedTracks = self.getTracks(trackItems)
-                    print(parsedTracks.count)
-                    parsedTracks.sortInPlace({ (element1, element2) -> Bool in
-                        return element1.trackPopularity > element2.trackPopularity
-                    })
-                    for track in parsedTracks {
-                        print("\(track.artists.first?.name), \(track.track.name), \(track.trackPopularity)")
-                    }
+//                    parsedTracks.sortInPlace({ (element1, element2) -> Bool in
+//                        return element1.trackPopularity > element2.trackPopularity
+//                    })
+//                    for track in parsedTracks {
+//                        print("\(track.artists.first?.name), \(track.track.name), \(track.trackPopularity)")
+//                    }
                     
                     self.getFullAlbumInfo(parsedTracks, completionHandler: completionHandler)
                     
@@ -138,13 +137,12 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
             if let tracks = parsedData["tracks"] as? [String: AnyObject] {
                 if let trackItems = tracks["items"] as? [[String: AnyObject]] {
                     var parsedTracks = self.getTracks(trackItems)
-                    print(parsedTracks.count)
-                    parsedTracks.sortInPlace({ (element1, element2) -> Bool in
-                        return element1.trackPopularity > element2.trackPopularity
-                    })
-                    for track in parsedTracks {
-             //           print("\(track.artists.first?.name), \(track.track.name), \(track.trackPopularity)")
-                    }
+//                    parsedTracks.sortInPlace({ (element1, element2) -> Bool in
+//                        return element1.trackPopularity > element2.trackPopularity
+//                    })
+//                    for track in parsedTracks {
+//                        print("\(track.artists.first?.name), \(track.track.name), \(track.trackPopularity)")
+//                    }
                     
                     self.getFullAlbumInfo(parsedTracks, completionHandler: completionHandler)
                     
@@ -225,7 +223,7 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
                 
                 for (key, _) in tracks.enumerate() {
                     tracks[key].albumObject = parsedAlbums[key]
-                    print("\(tracks[key].track.name) \(tracks[key].albumObject?.releaseDate)")
+                    print("\(tracks[key].artists[0].name) \(tracks[key].track.name) \(tracks[key].albumObject?.releaseDate)")
                 }
 //                parsedAlbums.sortInPlace({ (element1, element2) -> Bool in
 //                    guard let release1 = element1.releaseDate, let release2 = element2.releaseDate else {

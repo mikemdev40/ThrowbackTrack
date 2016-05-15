@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		7A0398E41CDEC827007ABBB7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0398E31CDEC827007ABBB7 /* Constants.swift */; };
 		7A0398E61CDF94A8007ABBB7 /* SpotifyLoginClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0398E51CDF94A8007ABBB7 /* SpotifyLoginClient.swift */; };
-		7A0398EC1CE2CAD4007ABBB7 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0398EB1CE2CAD4007ABBB7 /* SearchViewController.swift */; };
+		7A0398EC1CE2CAD4007ABBB7 /* OldSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0398EB1CE2CAD4007ABBB7 /* OldSearchViewController.swift */; };
 		7A0398EE1CE6960B007ABBB7 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0398ED1CE6960B007ABBB7 /* Track.swift */; };
 		7A0398F01CE6963F007ABBB7 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0398EF1CE6963F007ABBB7 /* Album.swift */; };
 		7A0398F21CE698DA007ABBB7 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0398F11CE698DA007ABBB7 /* Image.swift */; };
@@ -22,6 +22,7 @@
 		7A7998A41CE8F3220095CB8D /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7998A31CE8F3220095CB8D /* AuthenticationViewController.swift */; };
 		7A7998A61CE8F3800095CB8D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7998A51CE8F3800095CB8D /* TabBarController.swift */; };
 		7A7998A81CE902020095CB8D /* TODO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7998A71CE902020095CB8D /* TODO.swift */; };
+		7A7998AA1CE90F830095CB8D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7998A91CE90F830095CB8D /* SearchViewController.swift */; };
 		7AFFCD041CD9A8CC009E267E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFFCD031CD9A8CC009E267E /* AppDelegate.swift */; };
 		7AFFCD061CD9A8CC009E267E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFFCD051CD9A8CC009E267E /* LoginViewController.swift */; };
 		7AFFCD091CD9A8CC009E267E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AFFCD071CD9A8CC009E267E /* Main.storyboard */; };
@@ -32,7 +33,7 @@
 /* Begin PBXFileReference section */
 		7A0398E31CDEC827007ABBB7 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7A0398E51CDF94A8007ABBB7 /* SpotifyLoginClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyLoginClient.swift; sourceTree = "<group>"; };
-		7A0398EB1CE2CAD4007ABBB7 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		7A0398EB1CE2CAD4007ABBB7 /* OldSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldSearchViewController.swift; sourceTree = "<group>"; };
 		7A0398ED1CE6960B007ABBB7 /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		7A0398EF1CE6963F007ABBB7 /* Album.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		7A0398F11CE698DA007ABBB7 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
@@ -45,6 +46,7 @@
 		7A7998A31CE8F3220095CB8D /* AuthenticationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		7A7998A51CE8F3800095CB8D /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		7A7998A71CE902020095CB8D /* TODO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TODO.swift; sourceTree = "<group>"; };
+		7A7998A91CE90F830095CB8D /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		7AFFCD001CD9A8CB009E267E /* ThrowbackTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThrowbackTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AFFCD031CD9A8CC009E267E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AFFCD051CD9A8CC009E267E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -70,7 +72,7 @@
 			children = (
 				7A7998A31CE8F3220095CB8D /* AuthenticationViewController.swift */,
 				7A7998A51CE8F3800095CB8D /* TabBarController.swift */,
-				7A0398EB1CE2CAD4007ABBB7 /* SearchViewController.swift */,
+				7A7998A91CE90F830095CB8D /* SearchViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -124,6 +126,7 @@
 		7AFFCD021CD9A8CC009E267E /* ThrowbackTrack */ = {
 			isa = PBXGroup;
 			children = (
+				7AFFCD031CD9A8CC009E267E /* AppDelegate.swift */,
 				7A0398E31CDEC827007ABBB7 /* Constants.swift */,
 				7A7998A71CE902020095CB8D /* TODO.swift */,
 				7A0398FE1CE76FBD007ABBB7 /* Config.swift */,
@@ -133,7 +136,7 @@
 				7A0398E01CDCB0AD007ABBB7 /* Controllers */,
 				7AFFCD071CD9A8CC009E267E /* Main.storyboard */,
 				7AFFCD051CD9A8CC009E267E /* LoginViewController.swift */,
-				7AFFCD031CD9A8CC009E267E /* AppDelegate.swift */,
+				7A0398EB1CE2CAD4007ABBB7 /* OldSearchViewController.swift */,
 				7AFFCD0A1CD9A8CC009E267E /* Assets.xcassets */,
 				7AFFCD0C1CD9A8CC009E267E /* LaunchScreen.storyboard */,
 				7AFFCD0F1CD9A8CC009E267E /* Info.plist */,
@@ -212,7 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A0398EC1CE2CAD4007ABBB7 /* SearchViewController.swift in Sources */,
+				7A0398EC1CE2CAD4007ABBB7 /* OldSearchViewController.swift in Sources */,
 				7A7998A61CE8F3800095CB8D /* TabBarController.swift in Sources */,
 				7A0398F21CE698DA007ABBB7 /* Image.swift in Sources */,
 				7AFFCD061CD9A8CC009E267E /* LoginViewController.swift in Sources */,
@@ -224,6 +227,7 @@
 				7A0398FB1CE7662C007ABBB7 /* SpotifyRecommender.swift in Sources */,
 				7A0398FD1CE767B9007ABBB7 /* SpotifyMusicGetter.swift in Sources */,
 				7A0398F61CE763E6007ABBB7 /* SpotifyPlaylistManager.swift in Sources */,
+				7A7998AA1CE90F830095CB8D /* SearchViewController.swift in Sources */,
 				7A0398E61CDF94A8007ABBB7 /* SpotifyLoginClient.swift in Sources */,
 				7A0398EE1CE6960B007ABBB7 /* Track.swift in Sources */,
 				7A0398F01CE6963F007ABBB7 /* Album.swift in Sources */,

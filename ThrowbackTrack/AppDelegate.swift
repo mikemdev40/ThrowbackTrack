@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    //http://stackoverflow.com/questions/19962276/best-practices-for-storyboard-login-screen-handling-clearing-of-data-upon-logou
+    // checks upon launching to see if there is currently an active access token, and if NOT, then tries to refresh it (if possible), and if there is no token saved at all, then shows the login screen (which will always show on first app launch) http://stackoverflow.com/questions/19962276/best-practices-for-storyboard-login-screen-handling-clearing-of-data-upon-logou
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         
@@ -40,9 +40,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let _ = SpotifyLoginClient.sharedClient.accessToken {
                 SpotifyLoginClient.sharedClient.refreshToken({ (success, error) in
                     if success {
-                        print("refresh token: SUCESS!")
+                        print("refresh token: SUCCESS SUCCESS SUCCESS SUCCESS SUCCESS SUCCESS SUCCESS SUCCESS!")
                     } else {
-                        print(error)
+                        print("REFRESH TOKEN ERROR: \(error)")
                         
                         
                         //SHOW LOGIN SCREEN AND SHOW ERROR

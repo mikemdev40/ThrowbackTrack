@@ -26,3 +26,23 @@ func parseData(dateToParse: NSData) -> NSDictionary? {
     }
     return parsedData
 }
+
+func getNSURLFromComponents(scheme: String, host: String, path: String, parameters: [String: String]?) -> NSURL {
+    
+    let NSURLFromComponents = NSURLComponents()
+    NSURLFromComponents.scheme = scheme
+    NSURLFromComponents.host = host
+    NSURLFromComponents.path = path
+    
+    if let parameters = parameters {
+        var queryItems = [NSURLQueryItem]()
+        
+        for (key, value) in parameters {
+            let queryItem = NSURLQueryItem(name: key, value: value)
+            queryItems.append(queryItem)
+        }
+        NSURLFromComponents.queryItems = queryItems
+    }
+
+    return NSURLFromComponents.URL!
+}

@@ -16,20 +16,9 @@ class SpotifyRecommender: SpotifyMusicGetter {
         
         let parameters: [String: String] = ["seed_artists": "3fMbdgg4jU18AjLCKBhRSm", "min_popularity": "30", "limit": "100", "seed_genre": "pop"]
         
-        let NSURLFromComponents = NSURLComponents()
-        NSURLFromComponents.scheme = "https"
-        NSURLFromComponents.host = "api.spotify.com"
-        NSURLFromComponents.path = "/v1/recommendations"
+        let nsurl = getNSURLFromComponents("https", host: "api.spotify.com", path: "/v1/recommendations", parameters: parameters)
         
-        var queryItems = [NSURLQueryItem]()
-        
-        for (key, value) in parameters {
-            let queryItem = NSURLQueryItem(name: key, value: value)
-            queryItems.append(queryItem)
-        }
-        NSURLFromComponents.queryItems = queryItems
-        
-        let request = NSMutableURLRequest(URL: NSURLFromComponents.URL!)
+        let request = NSMutableURLRequest(URL: nsurl)
         request.HTTPMethod = "GET"
         
         guard let token = SpotifyLoginClient.sharedClient.accessToken else {

@@ -36,7 +36,15 @@ class SpotifyLoginClient {
     //STEP 1 from https://developer.spotify.com/web-api/authorization-guide/ : application requests authorization
     //note that this URL is then handled by a view controller via a safari window, and presented to user to login (this is STEP 2, which is handled by LoginViewController)
     func getApplicationAuthorizationURL() -> NSURL {
-        return getRequestURL()
+        
+        let parameters: [String: String] = [
+            Constants.AuthorizationConstants.AuthParameters.ClientId: Constants.AuthorizationConstants.AuthValues.ClientId,
+            Constants.AuthorizationConstants.AuthParameters.RedirectURI: Constants.AuthorizationConstants.AuthValues.RedirectURI,
+            Constants.AuthorizationConstants.AuthParameters.ResponseType: Constants.AuthorizationConstants.AuthValues.ResponseType,
+            Constants.AuthorizationConstants.AuthParameters.Scope: Constants.AuthorizationConstants.AuthValues.Scope,
+            Constants.AuthorizationConstants.AuthParameters.State: getRandomState()]
+        
+        return getNSURLFromComponents(Constants.AuthorizationConstants.Scheme, host: Constants.AuthorizationConstants.Host, path: Constants.AuthorizationConstants.Path, parameters: parameters)
     }
     
     //called from LoginViewController once the callback URL is received from the AppDelegte via the notification; this method determines if the callback contains code to exchange for an access code OR if there is an error (i.e. the user did not permit the app the requested scopes)
@@ -194,31 +202,6 @@ class SpotifyLoginClient {
         
         task.resume()
         session.finishTasksAndInvalidate()
-    }
-    
-    func getRequestURL() -> NSURL {
-        
-        let parameters: [String: String] = [
-            Constants.AuthorizationConstants.AuthParameters.ClientId: Constants.AuthorizationConstants.AuthValues.ClientId,
-            Constants.AuthorizationConstants.AuthParameters.RedirectURI: Constants.AuthorizationConstants.AuthValues.RedirectURI,
-            Constants.AuthorizationConstants.AuthParameters.ResponseType: Constants.AuthorizationConstants.AuthValues.ResponseType,
-            Constants.AuthorizationConstants.AuthParameters.Scope: Constants.AuthorizationConstants.AuthValues.Scope,
-            Constants.AuthorizationConstants.AuthParameters.State: getRandomState()]
-        
-        let NSURLFromComponents = NSURLComponents()
-        NSURLFromComponents.scheme = Constants.AuthorizationConstants.Scheme
-        NSURLFromComponents.host = Constants.AuthorizationConstants.Host
-        NSURLFromComponents.path = Constants.AuthorizationConstants.Path
-        
-        var queryItems = [NSURLQueryItem]()
-        
-        for (key, value) in parameters {
-            let queryItem = NSURLQueryItem(name: key, value: value)
-            queryItems.append(queryItem)
-        }
-        NSURLFromComponents.queryItems = queryItems
-        
-        return NSURLFromComponents.URL!
     }
     
     func saveAccessInfo(access: String?, refresh: String?, timer: Int?) {

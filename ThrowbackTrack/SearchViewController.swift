@@ -18,7 +18,7 @@ class SearchViewController: UIViewController {
     // ERROR CHECK FOR INT ENTRIES!!!!!!!
     
     @IBAction func searchYears(sender: UIButton) {
-        SpotifyYearSearcher.sharedInstance.searchYears(year1.text, year2: year2.text, keyword: keyword.text, genre: genre.text) { (success, error) in
+        SpotifyYearSearcher.sharedInstance.searchYears(year1.text, year2: year2.text) { (success, error) in
             print(success)
         }
     }

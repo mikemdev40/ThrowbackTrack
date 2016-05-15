@@ -12,39 +12,32 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
     
     static let sharedInstance = SpotifyYearSearcher()
     
-    func searchYears(year1: String?, year2: String?, keyword: String?, genre: String?, completionHandler: (success: Bool, error: String?) -> Void) {
+    private var currentSearchStatus: (resultCount: Int, offset: Int)?
+    private var nextSetOfResultsURL: String?
+    
+    func searchYears(year1: String?, year2: String?, completionHandler: (success: Bool, error: String?) -> Void) {
         
-        guard let year1 = year1, let year2 = year2, let keyword = keyword, let genre = genre else {
+        guard let year1 = year1, let year2 = year2 else {
             return
         }
         
-        //        let parameters: [String: String] = ["q": "\(keyword) genre:\(genre) year:\(year1)-\(year2)", "limit": "50", "type": "track"]
-        let parameters: [String: String] = ["q": "year:\(year1)-\(year2)", "limit": "20", "type": "track"]
+        var parameters = [String: String]()
         
-        let NSURLFromComponents = NSURLComponents()
-        NSURLFromComponents.scheme = "https"
-        NSURLFromComponents.host = "api.spotify.com"
-        NSURLFromComponents.path = "/v1/search"
+        parameters = ["q": "year:\(year1)-\(year2)", "limit": "20", "type": "track"]
+
+        let nsurl = getNSURLFromComponents("https", host: "api.spotify.com", path: "/v1/search", parameters: parameters)
         
-        var queryItems = [NSURLQueryItem]()
-        
-        for (key, value) in parameters {
-            let queryItem = NSURLQueryItem(name: key, value: value)
-            queryItems.append(queryItem)
-        }
-        NSURLFromComponents.queryItems = queryItems
-        
-        let request = NSMutableURLRequest(URL: NSURLFromComponents.URL!)
+        let request = NSMutableURLRequest(URL: nsurl)
         request.HTTPMethod = "GET"
-        
+
         guard let token = SpotifyLoginClient.sharedClient.accessToken else {
             completionHandler(success: false, error: "No access token")
             return
         }
-        
+
         let headerFormattedForSpotify = "Bearer \(token)"
         request.addValue(headerFormattedForSpotify, forHTTPHeaderField: "Authorization")
-        
+
         let session = getConfiguredSession()
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
             
@@ -106,20 +99,9 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
         
         let parameters: [String: String] = ["ids": stringOfAlbumIDs]
         
-        let NSURLFromComponents = NSURLComponents()
-        NSURLFromComponents.scheme = "https"
-        NSURLFromComponents.host = "api.spotify.com"
-        NSURLFromComponents.path = "/v1/albums"
+        let nsurl = getNSURLFromComponents("https", host: "api.spotify.com", path: "/v1/albums", parameters: parameters)
         
-        var queryItems = [NSURLQueryItem]()
-        
-        for (key, value) in parameters {
-            let queryItem = NSURLQueryItem(name: key, value: value)
-            queryItems.append(queryItem)
-        }
-        NSURLFromComponents.queryItems = queryItems
-        
-        let request = NSMutableURLRequest(URL: NSURLFromComponents.URL!)
+        let request = NSMutableURLRequest(URL: nsurl)
         request.HTTPMethod = "GET"
         
         guard let token = SpotifyLoginClient.sharedClient.accessToken else {
@@ -169,9 +151,7 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
                         print("\(album.album.name) \(album.albumPopularity) \(album.releaseDate)")
                     }
                 }
-                
             }
-            
         }
         
         task.resume()

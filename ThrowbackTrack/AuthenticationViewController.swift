@@ -64,6 +64,7 @@ class AuthenticationViewController: UIViewController {
     }
     
     deinit {
+        print("deinit")
         NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.LoginViewConstants.DismissSafariWindowNotification, object: nil)
     }
 }

@@ -65,9 +65,6 @@
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pyZ-KV-jrL">
                                 <rect key="frame" x="307" y="447" width="38" height="30"/>
                                 <state key="normal" title="&gt;&gt;&gt;&gt;"/>
-                                <connections>
-                                    <segue destination="rxP-g7-pSz" kind="show" id="Tzf-qW-UWM"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -98,6 +95,7 @@
                     <connections>
                         <segue destination="TyW-ha-4uv" kind="relationship" relationship="viewControllers" id="49O-qo-64t"/>
                         <segue destination="RQt-We-Xsh" kind="relationship" relationship="viewControllers" id="Mrq-kX-wKp"/>
+                        <segue destination="rxP-g7-pSz" kind="relationship" relationship="viewControllers" id="mjo-sa-WaP"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PqQ-5E-myj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -117,8 +115,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="okL-AZ-DVP">
-                                <rect key="frame" x="233" y="285" width="134" height="30"/>
-                                <state key="normal" title="LOGIN TO SPOTIFY"/>
+                                <rect key="frame" x="220" y="285" width="161" height="30"/>
+                                <state key="normal" title="CONNECT TO SPOTIFY"/>
                                 <connections>
                                     <action selector="authenticate:" destination="7XJ-Rf-0kX" eventType="touchUpInside" id="18F-Yf-Mku"/>
                                 </connections>
@@ -135,7 +133,7 @@
             </objects>
             <point key="canvasLocation" x="599" y="1962"/>
         </scene>
-        <!--Search View Controller-->
+        <!--Item-->
         <scene sceneID="cBt-e6-LOa">
             <objects>
                 <viewController id="rxP-g7-pSz" customClass="SearchViewController" customModule="ThrowbackTrack" customModuleProvider="target" sceneMemberID="viewController">
@@ -147,13 +145,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Z8-5b-rmD">
-                                <rect key="frame" x="276" y="28" width="48" height="30"/>
-                                <state key="normal" title="&lt;&lt;&lt;&lt;&lt;"/>
-                                <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="CRa-Ly-mHR"/>
-                                </connections>
-                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="SZz-VI-SoT">
                                 <rect key="frame" x="255" y="166" width="90" height="240"/>
                                 <subviews>
@@ -216,12 +207,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="1Z8-5b-rmD" firstAttribute="top" secondItem="TDI-QY-e9G" secondAttribute="bottom" constant="8" id="Kek-CA-9lK"/>
                             <constraint firstItem="SZz-VI-SoT" firstAttribute="centerY" secondItem="rkf-vU-Bye" secondAttribute="centerY" id="nZp-Ng-OUr"/>
-                            <constraint firstItem="1Z8-5b-rmD" firstAttribute="centerX" secondItem="rkf-vU-Bye" secondAttribute="centerX" id="pap-kR-adE"/>
                             <constraint firstItem="SZz-VI-SoT" firstAttribute="centerX" secondItem="rkf-vU-Bye" secondAttribute="centerX" id="qkf-Hh-xR6"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="shb-bD-GIX"/>
                     <connections>
                         <outlet property="genre" destination="gkX-jm-ceT" id="Rgp-22-eDy"/>
                         <outlet property="keyword" destination="kBo-Mv-pfi" id="S7x-d7-TvB"/>

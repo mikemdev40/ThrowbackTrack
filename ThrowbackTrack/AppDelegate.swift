@@ -31,6 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    
+    //http://stackoverflow.com/questions/19962276/best-practices-for-storyboard-login-screen-handling-clearing-of-data-upon-logou
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         
         if SpotifyLoginClient.sharedClient.expired {

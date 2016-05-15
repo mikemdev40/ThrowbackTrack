@@ -21,12 +21,9 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
             return
         }
         
-        var parameters = [String: String]()
-        
-        parameters = ["q": "year:\(year1)-\(year2)", "limit": "20", "type": "track"]
-
+        let parameters = ["q": "year:\(year1)-\(year2)", "limit": "20", "type": "track"]
         let nsurl = getNSURLFromComponents("https", host: "api.spotify.com", path: "/v1/search", parameters: parameters)
-        
+
         let request = NSMutableURLRequest(URL: nsurl)
         request.HTTPMethod = "GET"
 
@@ -62,7 +59,6 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
                 return
             }
             
-            print(parsedData)
             if let tracks = parsedData["tracks"] as? [String: AnyObject] {
                 if let trackItems = tracks["items"] as? [[String: AnyObject]] {
                     var parsedTracks = self.getTracks(trackItems)
@@ -76,6 +72,92 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
                     
                     self.getFullAlbumInfo(parsedTracks, completionHandler: completionHandler)
                     
+                }
+                
+                if let nextURL = tracks["next"] as? String {
+                    if nextURL != "<null>" {
+                        print(nextURL)
+                        self.nextSetOfResultsURL = nextURL
+                    } else {
+                        print("NIL")
+                        self.nextSetOfResultsURL = nil
+                    }
+                }
+            }
+            
+        }
+        
+        task.resume()
+        session.finishTasksAndInvalidate()
+    }
+    
+    func getNextTracks(completionHandler: (success: Bool, error: String?) -> Void) {
+        
+        guard let nextSetOfResultsURL = nextSetOfResultsURL else {
+            completionHandler(success: false, error: "NO MORE RESULTS")
+            return
+        }
+        
+        let nsurl = NSURL(string: nextSetOfResultsURL)
+        
+        let request = NSMutableURLRequest(URL: nsurl!)
+        request.HTTPMethod = "GET"
+        
+        guard let token = SpotifyLoginClient.sharedClient.accessToken else {
+            completionHandler(success: false, error: "No access token")
+            return
+        }
+        
+        let headerFormattedForSpotify = "Bearer \(token)"
+        request.addValue(headerFormattedForSpotify, forHTTPHeaderField: "Authorization")
+        
+        let session = getConfiguredSession()
+        let task = session.dataTaskWithRequest(request) { (data, response, error) in
+            
+            guard error == nil else {
+                completionHandler(success: false, error: error?.localizedDescription)
+                return
+            }
+            
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                print((response as? NSHTTPURLResponse)?.statusCode)
+                completionHandler(success: false, error: "Unsuccessful status code")
+                return
+            }
+            
+            guard let data = data else {
+                completionHandler(success: false, error: "No data")
+                return
+            }
+            
+            guard let parsedData = parseData(data) else {
+                completionHandler(success: false, error: "There was an error parsing the data")
+                return
+            }
+            
+            if let tracks = parsedData["tracks"] as? [String: AnyObject] {
+                if let trackItems = tracks["items"] as? [[String: AnyObject]] {
+                    var parsedTracks = self.getTracks(trackItems)
+                    print(parsedTracks.count)
+                    parsedTracks.sortInPlace({ (element1, element2) -> Bool in
+                        return element1.trackPopularity > element2.trackPopularity
+                    })
+                    for track in parsedTracks {
+                        print("\(track.artists.first?.name), \(track.track.name), \(track.trackPopularity)")
+                    }
+                    
+                    self.getFullAlbumInfo(parsedTracks, completionHandler: completionHandler)
+                    
+                }
+                
+                if let nextURL = tracks["next"] as? String {
+                    if nextURL != "<null>" {
+                        print(nextURL)
+                        self.nextSetOfResultsURL = nextURL
+                    } else {
+                        print("NIL")
+                        self.nextSetOfResultsURL = nil
+                    }
                 }
             }
             

@@ -18,12 +18,19 @@ class SearchViewController: UIViewController {
     // ERROR CHECK FOR INT ENTRIES!!!!!!!
     
     @IBAction func searchYears(sender: UIButton) {
+        
+        //CHECK FOR ACTIVE TOKEN, AND IF NOT, AUTOREFRESH TOKEN BEFORE PERFORMING THE SEARCH
+        
+        
         SpotifyYearSearcher.sharedInstance.searchYears(year1.text, year2: year2.text) { (success, error) in
             print(success)
         }
     }
     
     @IBAction func search(sender: UIButton) {
+        
+        //CHECK FOR ACTIVE TOKEN, AND IF NOT, AUTOREFRESH TOKEN BEFORE PERFORMING THE SEARCH
+
         
         SpotifyRecommender.sharedInstance.getRecommendations { (success, error) in
             print(success)
@@ -33,9 +40,17 @@ class SearchViewController: UIViewController {
     
     @IBAction func getMore(sender: UIButton) {
         
+        //CHECK FOR ACTIVE TOKEN, AND IF NOT, AUTOREFRESH TOKEN BEFORE PERFORMING THE SEARCH
+        SpotifyYearSearcher.sharedInstance.getNextTracks { (success, error) in
+            print("get more: \(success)")
+        }
+
     }
     
     @IBAction func genres(sender: UIButton) {
+        
+        //CHECK FOR ACTIVE TOKEN, AND IF NOT, AUTOREFRESH TOKEN BEFORE PERFORMING THE SEARCH
+
         SpotifyPlaylistManager.sharedInstance.getListOfGenres { (success, error) in
             print(success)
         }

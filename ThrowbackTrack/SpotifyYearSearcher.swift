@@ -143,7 +143,7 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
                         return element1.trackPopularity > element2.trackPopularity
                     })
                     for track in parsedTracks {
-                        print("\(track.artists.first?.name), \(track.track.name), \(track.trackPopularity)")
+             //           print("\(track.artists.first?.name), \(track.track.name), \(track.trackPopularity)")
                     }
                     
                     self.getFullAlbumInfo(parsedTracks, completionHandler: completionHandler)
@@ -221,18 +221,24 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
             if let albums = parsedData["albums"] as? [[String: AnyObject]] {
                 var parsedAlbums = self.getAlbums(albums)
                 
-                parsedAlbums.sortInPlace({ (element1, element2) -> Bool in
-                    guard let release1 = element1.releaseDate, let release2 = element2.releaseDate else {
-                        return false
-                    }
-                    return release1.compare(release2) == .OrderedDescending
-                })
+                var tracks = tracks  //saving tracks argument as mutable variable
                 
-                for album in parsedAlbums {
-                    if album.releaseDatePrecision == .Month || album.releaseDatePrecision == .Day {
-                        print("\(album.album.name) \(album.albumPopularity) \(album.releaseDate)")
-                    }
+                for (key, _) in tracks.enumerate() {
+                    tracks[key].albumObject = parsedAlbums[key]
+                    print("\(tracks[key].track.name) \(tracks[key].albumObject?.releaseDate)")
                 }
+//                parsedAlbums.sortInPlace({ (element1, element2) -> Bool in
+//                    guard let release1 = element1.releaseDate, let release2 = element2.releaseDate else {
+//                        return false
+//                    }
+//                    return release1.compare(release2) == .OrderedDescending
+//                })
+//                
+//                for album in parsedAlbums {
+//                    if album.releaseDatePrecision == .Month || album.releaseDatePrecision == .Day {
+//                        print("\(album.album.name) \(album.albumPopularity) \(album.releaseDate)")
+//                    }
+//                }
             }
         }
         

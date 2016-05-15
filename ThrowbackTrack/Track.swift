@@ -16,4 +16,6 @@ struct Track {
     let trackPopularity: Int
     let previewURL: String?
     let trackIcons: [Image]
+    
+    var albumObject: Album?  //initialied as nil and set later on album reverse lookup
 }

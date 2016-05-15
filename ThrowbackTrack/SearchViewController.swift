@@ -21,7 +21,6 @@ class SearchViewController: UIViewController {
         
         //CHECK FOR ACTIVE TOKEN, AND IF NOT, AUTOREFRESH TOKEN BEFORE PERFORMING THE SEARCH
         
-        
         SpotifyYearSearcher.sharedInstance.searchYears(year1.text, year2: year2.text) { (success, error) in
             print(success)
         }
@@ -31,7 +30,6 @@ class SearchViewController: UIViewController {
         
         //CHECK FOR ACTIVE TOKEN, AND IF NOT, AUTOREFRESH TOKEN BEFORE PERFORMING THE SEARCH
 
-        
         SpotifyRecommender.sharedInstance.getRecommendations { (success, error) in
             print(success)
         }

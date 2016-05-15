@@ -42,7 +42,7 @@ class SpotifyMusicGetter {
             let trackPopularity = track["popularity"] as! Int
             let previewURL = track["preview_url"] as? String
             
-            tracks.append(Track(track: (id: trackId, name: trackName), album: (id: albumId, name: albumName), artists: artists, trackPopularity: trackPopularity, previewURL: previewURL, trackIcons: images))
+            tracks.append(Track(track: (id: trackId, name: trackName), album: (id: albumId, name: albumName), artists: artists, trackPopularity: trackPopularity, previewURL: previewURL, trackIcons: images, albumObject: nil))
         }
         
         return tracks

@@ -12,6 +12,8 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
     
     static let sharedInstance = SpotifyYearSearcher()
     
+    var mostRecentTrackResults = [Track]()
+    
     private var currentSearchStatus: (resultCount: Int, offset: Int)?
     private var nextSetOfResultsURL: String?
     
@@ -36,7 +38,7 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
         request.addValue(headerFormattedForSpotify, forHTTPHeaderField: "Authorization")
 
         let session = getConfiguredSession()
-        let task = session.dataTaskWithRequest(request) { (data, response, error) in
+        let task = session.dataTaskWithRequest(request) {[unowned self] (data, response, error) in
             
             guard error == nil else {
                 completionHandler(success: false, error: error?.localizedDescription)
@@ -60,30 +62,20 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
             }
             
             if let tracks = parsedData["tracks"] as? [String: AnyObject] {
-                if let trackItems = tracks["items"] as? [[String: AnyObject]] {
-                    var parsedTracks = self.getTracks(trackItems)
-//                    parsedTracks.sortInPlace({ (element1, element2) -> Bool in
-//                        return element1.trackPopularity > element2.trackPopularity
-//                    })
-//                    for track in parsedTracks {
-//                        print("\(track.artists.first?.name), \(track.track.name), \(track.trackPopularity)")
-//                    }
-                    
-                    self.getFullAlbumInfo(parsedTracks, completionHandler: completionHandler)
-                    
-                }
                 
                 if let nextURL = tracks["next"] as? String {
                     if nextURL != "<null>" {
-                        print(nextURL)
                         self.nextSetOfResultsURL = nextURL
                     } else {
-                        print("NIL")
                         self.nextSetOfResultsURL = nil
                     }
                 }
+                
+                if let trackItems = tracks["items"] as? [[String: AnyObject]] {
+                    let parsedTracks = self.getTracks(trackItems)
+                    self.getFullAlbumInfo(parsedTracks, completionHandler: completionHandler)
+                }
             }
-            
         }
         
         task.resume()
@@ -136,16 +128,8 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
             
             if let tracks = parsedData["tracks"] as? [String: AnyObject] {
                 if let trackItems = tracks["items"] as? [[String: AnyObject]] {
-                    var parsedTracks = self.getTracks(trackItems)
-//                    parsedTracks.sortInPlace({ (element1, element2) -> Bool in
-//                        return element1.trackPopularity > element2.trackPopularity
-//                    })
-//                    for track in parsedTracks {
-//                        print("\(track.artists.first?.name), \(track.track.name), \(track.trackPopularity)")
-//                    }
-                    
+                    let parsedTracks = self.getTracks(trackItems)
                     self.getFullAlbumInfo(parsedTracks, completionHandler: completionHandler)
-                    
                 }
                 
                 if let nextURL = tracks["next"] as? String {
@@ -193,7 +177,7 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
         request.addValue(headerFormattedForSpotify, forHTTPHeaderField: "Authorization")
         
         let session = getConfiguredSession()
-        let task = session.dataTaskWithRequest(request) { (data, response, error) in
+        let task = session.dataTaskWithRequest(request) {[unowned self] (data, response, error) in
             
             guard error == nil else {
                 completionHandler(success: false, error: error?.localizedDescription)
@@ -219,24 +203,14 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
             if let albums = parsedData["albums"] as? [[String: AnyObject]] {
                 var parsedAlbums = self.getAlbums(albums)
                 
-                var tracks = tracks  //saving tracks argument as mutable variable
+                var mutableTracks = tracks  //saving tracks argument as mutable variable
                 
-                for (key, _) in tracks.enumerate() {
-                    tracks[key].albumObject = parsedAlbums[key]
-                    print("\(tracks[key].artists[0].name) \(tracks[key].track.name) \(tracks[key].track.id) \(tracks[key].albumObject?.releaseDate)")
+                for (key, _) in mutableTracks.enumerate() {
+                    mutableTracks[key].albumObject = parsedAlbums[key]
                 }
-//                parsedAlbums.sortInPlace({ (element1, element2) -> Bool in
-//                    guard let release1 = element1.releaseDate, let release2 = element2.releaseDate else {
-//                        return false
-//                    }
-//                    return release1.compare(release2) == .OrderedDescending
-//                })
-//                
-//                for album in parsedAlbums {
-//                    if album.releaseDatePrecision == .Month || album.releaseDatePrecision == .Day {
-//                        print("\(album.album.name) \(album.albumPopularity) \(album.releaseDate)")
-//                    }
-//                }
+                
+                self.mostRecentTrackResults = mutableTracks
+                completionHandler(success: true, error: nil)
             }
         }
         

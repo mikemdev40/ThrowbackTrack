@@ -23,6 +23,7 @@
 		7A7998A61CE8F3800095CB8D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7998A51CE8F3800095CB8D /* TabBarController.swift */; };
 		7A7998A81CE902020095CB8D /* TODO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7998A71CE902020095CB8D /* TODO.swift */; };
 		7A7998AA1CE90F830095CB8D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7998A91CE90F830095CB8D /* SearchViewController.swift */; };
+		7AA8F16B1CEEBA0600890509 /* YearSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA8F16A1CEEBA0600890509 /* YearSearchTableViewCell.swift */; };
 		7AFFCD041CD9A8CC009E267E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFFCD031CD9A8CC009E267E /* AppDelegate.swift */; };
 		7AFFCD061CD9A8CC009E267E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFFCD051CD9A8CC009E267E /* LoginViewController.swift */; };
 		7AFFCD091CD9A8CC009E267E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AFFCD071CD9A8CC009E267E /* Main.storyboard */; };
@@ -47,6 +48,7 @@
 		7A7998A51CE8F3800095CB8D /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		7A7998A71CE902020095CB8D /* TODO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TODO.swift; sourceTree = "<group>"; };
 		7A7998A91CE90F830095CB8D /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		7AA8F16A1CEEBA0600890509 /* YearSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YearSearchTableViewCell.swift; sourceTree = "<group>"; };
 		7AFFCD001CD9A8CB009E267E /* ThrowbackTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThrowbackTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AFFCD031CD9A8CC009E267E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AFFCD051CD9A8CC009E267E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 		7A0398E21CDCB0BE007ABBB7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7AA8F16A1CEEBA0600890509 /* YearSearchTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				7A0398FF1CE76FBD007ABBB7 /* Config.swift in Sources */,
 				7AFFCD041CD9A8CC009E267E /* AppDelegate.swift in Sources */,
 				7A0398F81CE76539007ABBB7 /* NetworkFunctions.swift in Sources */,
+				7AA8F16B1CEEBA0600890509 /* YearSearchTableViewCell.swift in Sources */,
 				7A0398E41CDEC827007ABBB7 /* Constants.swift in Sources */,
 				7A7998A41CE8F3220095CB8D /* AuthenticationViewController.swift in Sources */,
 				7A0398FB1CE7662C007ABBB7 /* SpotifyRecommender.swift in Sources */,

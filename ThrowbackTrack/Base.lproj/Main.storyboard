@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -147,7 +146,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="SZz-VI-SoT">
-                                <rect key="frame" x="255" y="166" width="90" height="240"/>
+                                <rect key="frame" x="255" y="166" width="90" height="270"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="year 1" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nFU-8l-9xq">
                                         <rect key="frame" x="0.0" y="0.0" width="90" height="30"/>
@@ -195,6 +194,13 @@
                                         <state key="normal" title="genres"/>
                                         <connections>
                                             <action selector="genres:" destination="rxP-g7-pSz" eventType="touchUpInside" id="rvG-Uv-Bpr"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wbX-da-xCb">
+                                        <rect key="frame" x="14" y="240" width="62" height="30"/>
+                                        <state key="normal" title="LOGOUT"/>
+                                        <connections>
+                                            <action selector="logout:" destination="rxP-g7-pSz" eventType="touchUpInside" id="GtP-c8-0nO"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -261,6 +267,9 @@
                                     <segment title="Get Songs by Year(s)"/>
                                     <segment title="Get Recommendations"/>
                                 </segments>
+                                <connections>
+                                    <action selector="selectSegment:" destination="RQt-We-Xsh" eventType="valueChanged" id="J9z-JV-a5K"/>
+                                </connections>
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h1C-fY-AZN">
                                 <rect key="frame" x="0.0" y="56" width="600" height="96"/>
@@ -301,6 +310,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="njm-dv-Mri">
                                         <rect key="frame" x="264" y="58" width="72" height="30"/>
                                         <state key="normal" title="Get Songs"/>
+                                        <connections>
+                                            <action selector="search:" destination="RQt-We-Xsh" eventType="touchUpInside" id="bwu-h1-G6J"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.95661695079999998" green="0.93230899580000004" blue="0.73064072099999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -312,21 +324,31 @@
                                     <constraint firstAttribute="bottom" secondItem="njm-dv-Mri" secondAttribute="bottom" constant="8" id="xAT-tz-bKV"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W8S-n7-pdi">
-                                <rect key="frame" x="117" y="221" width="383" height="222"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W8S-n7-pdi">
+                                <rect key="frame" x="0.0" y="152" width="600" height="399"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="W8S-n7-pdi" firstAttribute="top" secondItem="h1C-fY-AZN" secondAttribute="bottom" id="Ea5-r5-jSl"/>
                             <constraint firstItem="h1C-fY-AZN" firstAttribute="top" secondItem="M89-2T-scY" secondAttribute="bottom" constant="8" id="Onb-dX-CNU"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="h1C-fY-AZN" secondAttribute="trailing" constant="-20" id="XFe-kg-5BL"/>
-                            <constraint firstItem="h1C-fY-AZN" firstAttribute="leading" secondItem="Hni-TU-Lu5" secondAttribute="leadingMargin" constant="-20" id="bv3-qY-Fmg"/>
+                            <constraint firstItem="W8S-n7-pdi" firstAttribute="leading" secondItem="Hni-TU-Lu5" secondAttribute="leading" id="S3l-cE-U5p"/>
+                            <constraint firstAttribute="trailing" secondItem="h1C-fY-AZN" secondAttribute="trailing" id="XFe-kg-5BL"/>
+                            <constraint firstItem="hj3-YD-ETh" firstAttribute="top" secondItem="W8S-n7-pdi" secondAttribute="bottom" id="Yhi-UB-MAC"/>
+                            <constraint firstItem="h1C-fY-AZN" firstAttribute="leading" secondItem="Hni-TU-Lu5" secondAttribute="leading" id="bv3-qY-Fmg"/>
                             <constraint firstItem="M89-2T-scY" firstAttribute="top" secondItem="SAr-eJ-xr2" secondAttribute="bottom" id="ikF-u0-3ST"/>
                             <constraint firstItem="M89-2T-scY" firstAttribute="centerX" secondItem="Hni-TU-Lu5" secondAttribute="centerX" id="nHo-A5-Ne2"/>
+                            <constraint firstAttribute="trailing" secondItem="W8S-n7-pdi" secondAttribute="trailing" id="xWJ-Je-4bS"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="pXf-TU-HmZ"/>
+                    <connections>
+                        <outlet property="segmentedControl" destination="M89-2T-scY" id="lw8-m3-aoD"/>
+                        <outlet property="table" destination="W8S-n7-pdi" id="27e-Kg-kt1"/>
+                        <outlet property="year1" destination="c4y-ix-4Rx" id="WGd-UG-Rzl"/>
+                        <outlet property="year2" destination="7eq-wu-15k" id="NTb-vj-nqF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6bv-ow-XYz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

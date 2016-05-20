@@ -17,6 +17,10 @@ class OldSearchViewController: UIViewController {
     
     // ERROR CHECK FOR INT ENTRIES!!!!!!!
     
+    @IBAction func logout(sender: UIButton) {
+        SpotifyLoginClient.sharedClient.logout()
+    }
+    
     @IBAction func searchYears(sender: UIButton) {
         
         //CHECK FOR ACTIVE TOKEN, AND IF NOT, AUTOREFRESH TOKEN BEFORE PERFORMING THE SEARCH

@@ -82,6 +82,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = table.dequeueReusableCellWithIdentifier("YearSearchCell") as! YearSearchTableViewCell
         
         cell.textLabel?.text = SpotifyYearSearcher.sharedInstance.mostRecentTrackResults[indexPath.row].track.name
+        let artist = SpotifyYearSearcher.sharedInstance.mostRecentTrackResults[indexPath.row].artists[0].name
+        cell.detailTextLabel?.text = artist
         
         return cell
         
@@ -97,5 +99,15 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let frameHeight = scrollView.frame.height
+        let contentSizeHeight = scrollView.contentSize.height
+        let contentOffset = scrollView.contentOffset.y
+        
+        if frameHeight + contentOffset >= contentSizeHeight {
+            print("end of table")
+        }
     }
 }

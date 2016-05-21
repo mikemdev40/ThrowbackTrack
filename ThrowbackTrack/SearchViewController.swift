@@ -21,7 +21,12 @@ class SearchViewController: UIViewController {
         }
     }
     
+    var sectionAfterLastResultsSection: Int {
+        return SpotifyYearSearcher.sharedInstance.mostRecentTrackResults.count
+    }
+    
     @IBAction func selectSegment(sender: UISegmentedControl) {
+        
     }
     
     @IBAction func search(sender: UIButton) {
@@ -79,14 +84,20 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = table.dequeueReusableCellWithIdentifier("YearSearchCell") as! YearSearchTableViewCell
+        var cell: UITableViewCell
         
-        cell.textLabel?.text = SpotifyYearSearcher.sharedInstance.mostRecentTrackResults[indexPath.row].track.name
-        let artist = SpotifyYearSearcher.sharedInstance.mostRecentTrackResults[indexPath.row].artists[0].name
-        cell.detailTextLabel?.text = artist
-        
+        if indexPath.section == sectionAfterLastResultsSection {
+            cell = table.dequeueReusableCellWithIdentifier("SpinnerViewCell") as! SpinnerTableViewCell
+            (cell as? SpinnerTableViewCell)?.spinner.startAnimating()
+        } else {
+            cell = table.dequeueReusableCellWithIdentifier("YearSearchCell") as! YearSearchTableViewCell
+            
+            let trackName = SpotifyYearSearcher.sharedInstance.mostRecentTrackResults[indexPath.section][indexPath.row].track.name
+            cell.textLabel?.text = trackName
+            let artist = SpotifyYearSearcher.sharedInstance.mostRecentTrackResults[indexPath.section][indexPath.row].artists[0].name
+            cell.detailTextLabel?.text = artist
+        }
         return cell
-        
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -94,13 +105,22 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return SpotifyYearSearcher.sharedInstance.mostRecentTrackResults.count
+        
+        let sectionAfterLastResultsSection = SpotifyYearSearcher.sharedInstance.mostRecentTrackResults.count
+        
+        if section == sectionAfterLastResultsSection {
+            return 1
+        } else {
+            return SpotifyYearSearcher.sharedInstance.mostRecentTrackResults[section].count
+        }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return SpotifyYearSearcher.sharedInstance.mostRecentTrackResults.count + 1
     }
+
     
+    //reminder that tableviews are subclasses of scrollviews, and the UITableViewDelegate protocol conforms to UIScrollViewDelegate
     func scrollViewDidScroll(scrollView: UIScrollView) {
         let frameHeight = scrollView.frame.height
         let contentSizeHeight = scrollView.contentSize.height
@@ -108,6 +128,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         
         if frameHeight + contentOffset >= contentSizeHeight {
             print("end of table")
+            
         }
     }
 }

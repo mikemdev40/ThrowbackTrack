@@ -12,7 +12,7 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
     
     static let sharedInstance = SpotifyYearSearcher()
     
-    var mostRecentTrackResults = [Track]()
+    var mostRecentTrackResults = [[Track]]()
     
     private var currentSearchStatus: (resultCount: Int, offset: Int)?
     private var nextSetOfResultsURL: String?
@@ -209,7 +209,7 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
                     mutableTracks[key].albumObject = parsedAlbums[key]
                 }
                 
-                self.mostRecentTrackResults = mutableTracks
+                self.mostRecentTrackResults.append(mutableTracks)
                 completionHandler(success: true, error: nil)
             }
         }

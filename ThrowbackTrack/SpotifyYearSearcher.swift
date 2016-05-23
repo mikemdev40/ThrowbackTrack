@@ -16,6 +16,8 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
     
     private var currentSearchStatus: (resultCount: Int, offset: Int)?
     private var nextSetOfResultsURL: String?
+
+    private let networkQueue = dispatch_queue_create("com.throwbacktrack.mikemiller", DISPATCH_QUEUE_SERIAL)
     
     func searchYears(year1: String?, year2: String?, completionHandler: (success: Bool, error: String?) -> Void) {
         
@@ -77,9 +79,11 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
                 }
             }
         }
-        
-        task.resume()
-        session.finishTasksAndInvalidate()
+        dispatch_async(networkQueue) {
+            task.resume()
+            session.finishTasksAndInvalidate()
+        }
+
     }
     
     func getNextTracks(completionHandler: (success: Bool, error: String?) -> Void) {
@@ -145,8 +149,10 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
             
         }
         
-        task.resume()
-        session.finishTasksAndInvalidate()
+        dispatch_async(networkQueue) {
+            task.resume()
+            session.finishTasksAndInvalidate()
+        }
     }
     
     private func getFullAlbumInfo(tracks: [Track], completionHandler: (success: Bool, error: String?) -> Void) {
@@ -214,8 +220,10 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
             }
         }
         
-        task.resume()
-        session.finishTasksAndInvalidate()
+        dispatch_async(networkQueue) {
+            task.resume()
+            session.finishTasksAndInvalidate()
+        }
         
     }
     

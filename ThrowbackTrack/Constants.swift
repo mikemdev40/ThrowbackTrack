@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Constants {
     
@@ -84,22 +85,20 @@ struct Constants {
         
         struct Search {
             static let Path = "/v1/search"
-            
-            
-            
         }
         
         struct Playlists {
             static let GetTracksPath = "/v1/users"
             static let GetUserPlaylistsPath = "/v1/me"
-            
-            
-            
         }
     }
     
     struct LoginViewConstants {
         static let DismissSafariWindowNotification = "dismissSafariWindowAfterAuthReceived"
         static let AuthenticationVCName = "AuthenticationVC"
+    }
+    
+    struct YearSearchConstants {
+        static let HeightOfSpinnerCell: CGFloat = 44
     }
 }

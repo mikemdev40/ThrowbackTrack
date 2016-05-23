@@ -25,6 +25,8 @@ class SearchViewController: UIViewController {
         return SpotifyYearSearcher.sharedInstance.mostRecentTrackResults.count
     }
     
+    var gettingNextTracks = false
+    
     @IBAction func selectSegment(sender: UISegmentedControl) {
         
     }
@@ -130,6 +132,18 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         
         if frameHeight + contentOffset + Constants.YearSearchConstants.HeightOfSpinnerCell >= contentSizeHeight {
             print("arrived at spinner")
+            
+            if !gettingNextTracks {
+                gettingNextTracks = true
+                SpotifyYearSearcher.sharedInstance.getNextTracks { (success, error) in
+                    if success {
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.table.reloadData()
+                            self.gettingNextTracks = false
+                        })
+                    }
+                }
+            }
             
         }
     }

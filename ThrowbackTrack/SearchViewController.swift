@@ -36,6 +36,8 @@ class SearchViewController: UIViewController {
         //check to make sure valid years are entered
     
         //CHECK FOR ACTIVE TOKEN, AND IF NOT, AUTOREFRESH TOKEN BEFORE PERFORMING THE SEARCH
+        SpotifyYearSearcher.sharedInstance.mostRecentTrackResults.removeAll()
+        table.reloadData()
         
         SpotifyYearSearcher.sharedInstance.searchYears(year1.text, year2: year2.text) { (success, error) in
             if success {
@@ -92,12 +94,21 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             cell = table.dequeueReusableCellWithIdentifier("SpinnerViewCell") as! SpinnerTableViewCell
             (cell as? SpinnerTableViewCell)?.spinner.startAnimating()
         } else {
-            cell = table.dequeueReusableCellWithIdentifier("YearSearchCell") as! YearSearchTableViewCell
+            let yearCell = table.dequeueReusableCellWithIdentifier("YearSearchCell") as! YearSearchTableViewCell
             
             let trackName = SpotifyYearSearcher.sharedInstance.mostRecentTrackResults[indexPath.section][indexPath.row].track.name
-            cell.textLabel?.text = trackName
+            yearCell.titleLabel.text = trackName
             let artist = SpotifyYearSearcher.sharedInstance.mostRecentTrackResults[indexPath.section][indexPath.row].artists[0].name
-            cell.detailTextLabel?.text = artist
+            yearCell.artistLabel.text = artist
+            let releaseDate = SpotifyYearSearcher.sharedInstance.mostRecentTrackResults[indexPath.section][indexPath.row].albumObject?.releaseDate
+            yearCell.releaseDate.text = "\(releaseDate)"
+            let popularity = SpotifyYearSearcher.sharedInstance.mostRecentTrackResults[indexPath.section][indexPath.row].trackPopularity
+            yearCell.popularityLabel.text = "\(popularity)"
+            
+            let previewURL = SpotifyYearSearcher.sharedInstance.mostRecentTrackResults[indexPath.section][indexPath.row].previewURL
+            yearCell.previewURL = previewURL
+            
+            cell = yearCell
         }
         return cell
     }
@@ -108,8 +119,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        let sectionAfterLastResultsSection = SpotifyYearSearcher.sharedInstance.mostRecentTrackResults.count
-        
         if section == sectionAfterLastResultsSection {
             return 1
         } else {
@@ -118,7 +127,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return SpotifyYearSearcher.sharedInstance.mostRecentTrackResults.count + 1
+        if sectionAfterLastResultsSection == 0 {
+            return 0
+        } else {
+            return sectionAfterLastResultsSection + 1
+        }
     }
 
     
@@ -134,12 +147,14 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             print("arrived at spinner")
             
             if !gettingNextTracks {
+                print("------ GETTING SONGS -----")
                 gettingNextTracks = true
                 SpotifyYearSearcher.sharedInstance.getNextTracks { (success, error) in
                     if success {
                         dispatch_async(dispatch_get_main_queue(), {
                             self.table.reloadData()
                             self.gettingNextTracks = false
+                            print("---- DONE DONE DONE DONE ----")
                         })
                     }
                 }

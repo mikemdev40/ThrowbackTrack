@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class SpotifyMusicGetter {
     
@@ -81,5 +82,11 @@ class SpotifyMusicGetter {
         }
         
         return albums
+    }
+    
+    func getImage(imageURL: String) -> UIImage? {
+        
+        
+        return nil
     }
 }

@@ -10,6 +10,20 @@ import UIKit
 
 class YearSearchTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var artistLabel: UILabel!
+    @IBOutlet weak var releaseDate: UILabel!
+    @IBOutlet weak var popularityLabel: UILabel!
+    
+    @IBOutlet weak var previewButton: UIButton!
+    
+    var previewURL: String?
+    
+    @IBAction func playPreview(sender: UIButton) {
+    
+    
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

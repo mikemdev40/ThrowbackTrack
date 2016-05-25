@@ -18,6 +18,8 @@ class SearchViewController: UIViewController {
         didSet {
             table.delegate = self
             table.dataSource = self
+            table.rowHeight = UITableViewAutomaticDimension
+            table.estimatedRowHeight = 60
         }
     }
     
@@ -26,6 +28,7 @@ class SearchViewController: UIViewController {
     }
     
     var gettingNextTracks = false
+    let formatter = NSDateFormatter()
     
     @IBAction func selectSegment(sender: UISegmentedControl) {
         
@@ -96,12 +99,25 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             let yearCell = table.dequeueReusableCellWithIdentifier("YearSearchCell") as! YearSearchTableViewCell
             
-            let trackName = SpotifyYearSearcher.sharedInstance.mostRecentTrackResults[indexPath.section][indexPath.row].track.name
-            yearCell.titleLabel.text = trackName
-            let artist = SpotifyYearSearcher.sharedInstance.mostRecentTrackResults[indexPath.section][indexPath.row].artists[0].name
-            yearCell.artistLabel.text = artist
-            let releaseDate = SpotifyYearSearcher.sharedInstance.mostRecentTrackResults[indexPath.section][indexPath.row].albumObject?.releaseDate
-            yearCell.releaseDate.text = "\(releaseDate)"
+            let track = SpotifyYearSearcher.sharedInstance.mostRecentTrackResults[indexPath.section][indexPath.row]
+            
+            yearCell.titleLabel.text = track.track.name
+            yearCell.artistLabel.text = track.artists[0].name
+            
+            if let releaseDate = track.albumObject?.releaseDate, let precision = track.albumObject?.releaseDatePrecision {
+                switch precision {
+                case  .Day:
+                    formatter.dateFormat = "yyyy-MM-dd"
+                case .Month:
+                    formatter.dateFormat = "yyyy-MM"
+                case .Year:
+                    formatter.dateFormat = "yyyy"
+                }
+                yearCell.releaseDate.text = formatter.stringFromDate(releaseDate)
+            } else {
+                yearCell.releaseDate.text = "Unknown"
+            }
+    
             let popularity = SpotifyYearSearcher.sharedInstance.mostRecentTrackResults[indexPath.section][indexPath.row].trackPopularity
             yearCell.popularityLabel.text = "\(popularity)"
             
@@ -116,6 +132,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
     }
+    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         

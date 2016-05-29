@@ -14,6 +14,7 @@ class YearSearchTableViewCell: UITableViewCell {
     @IBOutlet weak var artistLabel: UILabel!
     @IBOutlet weak var releaseDate: UILabel!
     @IBOutlet weak var popularityLabel: UILabel!
+    @IBOutlet weak var albumLabel: UILabel!
     
     @IBOutlet weak var previewButton: UIButton!
     

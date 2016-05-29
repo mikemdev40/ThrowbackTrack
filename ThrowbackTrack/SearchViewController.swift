@@ -55,29 +55,29 @@ class SearchViewController: UIViewController {
     
     func sortByPopularity() {
         
-        //                    parsedTracks.sortInPlace({ (element1, element2) -> Bool in
-        //                        return element1.trackPopularity > element2.trackPopularity
-        //                    })
-        //                    for track in parsedTracks {
-        //                        print("\(track.artists.first?.name), \(track.track.name), \(track.trackPopularity)")
-        //                    }
+//        parsedTracks.sortInPlace({ (element1, element2) -> Bool in
+//            return element1.trackPopularity > element2.trackPopularity
+//        })
+//        for track in parsedTracks {
+//            print("\(track.artists.first?.name), \(track.track.name), \(track.trackPopularity)")
+//        }
     
     }
     
     func showOnlyBetweenMonths() {
         
-        //                parsedAlbums.sortInPlace({ (element1, element2) -> Bool in
-        //                    guard let release1 = element1.releaseDate, let release2 = element2.releaseDate else {
-        //                        return false
-        //                    }
-        //                    return release1.compare(release2) == .OrderedDescending
-        //                })
-        //
-        //                for album in parsedAlbums {
-        //                    if album.releaseDatePrecision == .Month || album.releaseDatePrecision == .Day {
-        //                        print("\(album.album.name) \(album.albumPopularity) \(album.releaseDate)")
-        //                    }
-        //                }
+//        parsedAlbums.sortInPlace({ (element1, element2) -> Bool in
+//            guard let release1 = element1.releaseDate, let release2 = element2.releaseDate else {
+//                return false
+//            }
+//            return release1.compare(release2) == .OrderedDescending
+//        })
+//
+//        for album in parsedAlbums {
+//            if album.releaseDatePrecision == .Month || album.releaseDatePrecision == .Day {
+//                print("\(album.album.name) \(album.albumPopularity) \(album.releaseDate)")
+//            }
+//        }
     }
     
     override func viewDidLoad() {
@@ -118,8 +118,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                 yearCell.releaseDate.text = "Unknown"
             }
     
-            let popularity = SpotifyYearSearcher.sharedInstance.mostRecentTrackResults[indexPath.section][indexPath.row].trackPopularity
+            let popularity = track.trackPopularity
             yearCell.popularityLabel.text = "\(popularity)"
+            
+            yearCell.albumLabel.text = track.album.name
             
             let previewURL = SpotifyYearSearcher.sharedInstance.mostRecentTrackResults[indexPath.section][indexPath.row].previewURL
             yearCell.previewURL = previewURL

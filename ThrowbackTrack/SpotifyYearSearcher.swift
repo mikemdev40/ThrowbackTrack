@@ -17,8 +17,7 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
     private var currentSearchStatus: (resultCount: Int, offset: Int)?
     private var nextSetOfResultsURL: String?
 
-    //created a serial queue on which to download songs so that mostRecentTrackResults is written to in a threadsafe way
-   // private let networkQueue = dispatch_queue_create("com.throwbacktrack.mikemiller", DISPATCH_QUEUE_SERIAL)
+    private let networkQueue = dispatch_queue_create("com.throwbacktrack.mikemiller", DISPATCH_QUEUE_SERIAL)
     
     func searchYears(year1: String?, year2: String?, completionHandler: (success: Bool, error: String?) -> Void) {
         
@@ -80,11 +79,8 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
                 }
             }
         }
-      //  dispatch_async(networkQueue) {
-            task.resume()
-            session.finishTasksAndInvalidate()
-     //   }
-
+        task.resume()
+        session.finishTasksAndInvalidate()
     }
     
     func getNextTracks(completionHandler: (success: Bool, error: String?) -> Void) {
@@ -150,10 +146,8 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
             
         }
     
-    //    dispatch_async(networkQueue) {
-            task.resume()
-            session.finishTasksAndInvalidate()
-    //    }
+        task.resume()
+        session.finishTasksAndInvalidate()
     }
     
     private func getFullAlbumInfo(tracks: [Track], completionHandler: (success: Bool, error: String?) -> Void) {
@@ -215,17 +209,15 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
                 for (key, _) in mutableTracks.enumerate() {
                     mutableTracks[key].albumObject = parsedAlbums[key]
                 }
-                
-                self.mostRecentTrackResults.append(mutableTracks)
-                completionHandler(success: true, error: nil)
+                dispatch_async(self.networkQueue, {
+                    print("dispatched to serial queue")
+                    self.mostRecentTrackResults.append(mutableTracks)
+                    completionHandler(success: true, error: nil)
+                })
             }
         }
-        
-    //    dispatch_async(networkQueue) {
-            task.resume()
-            session.finishTasksAndInvalidate()
-    //    }
-        
+        task.resume()
+        session.finishTasksAndInvalidate()
     }
     
 }

@@ -160,10 +160,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let contentSizeHeight = scrollView.contentSize.height
         let contentOffset = scrollView.contentOffset.y
         
-        print("\(frameHeight) \(contentSizeHeight) \(contentOffset)")
+      //  print("\(frameHeight) \(contentSizeHeight) \(contentOffset)")
         
         if frameHeight + contentOffset + Constants.YearSearchConstants.HeightOfSpinnerCell >= contentSizeHeight {
-            print("arrived at spinner")
+       //     print("arrived at spinner")
             
             if !gettingNextTracks {
                 print("------ GETTING SONGS -----")

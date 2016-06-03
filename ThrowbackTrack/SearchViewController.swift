@@ -46,6 +46,8 @@ class SearchViewController: UIViewController {
             if success {
                 
                 dispatch_async(dispatch_get_main_queue(), {
+                    print("5. \(dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL))")
+
                     self.table.reloadData()
                 })
             }
@@ -171,6 +173,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                 SpotifyYearSearcher.sharedInstance.getNextTracks { (success, error) in
                     if success {
                         dispatch_async(dispatch_get_main_queue(), {
+                            print("6. \(dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL))")
+
                             self.table.reloadData()
                             self.gettingNextTracks = false
                             print("---- DONE DONE DONE DONE ----")

@@ -17,10 +17,10 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
     private var currentSearchStatus: (resultCount: Int, offset: Int)?
     private var nextSetOfResultsURL: String?
 
-    private let networkQueue = dispatch_queue_create("com.throwbacktrack.mikemiller", DISPATCH_QUEUE_SERIAL)
+//    private let networkQueue = dispatch_queue_create("com.throwbacktrack.mikemiller", DISPATCH_QUEUE_SERIAL)
     
     func searchYears(year1: String?, year2: String?, completionHandler: (success: Bool, error: String?) -> Void) {
-        
+        print("1. \(dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL))")
         guard let year1 = year1, let year2 = year2 else {
             return
         }
@@ -41,7 +41,8 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
 
         let session = getConfiguredSession()
         let task = session.dataTaskWithRequest(request) {[unowned self] (data, response, error) in
-            
+            print("2. \(dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL))")
+
             guard error == nil else {
                 completionHandler(success: false, error: error?.localizedDescription)
                 return
@@ -152,6 +153,8 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
     
     private func getFullAlbumInfo(tracks: [Track], completionHandler: (success: Bool, error: String?) -> Void) {
         
+        print("3. \(dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL))")
+
         var stringOfAlbumIDs = ""
         
         for track in tracks {
@@ -209,7 +212,8 @@ class SpotifyYearSearcher: SpotifyMusicGetter {
                 for (key, _) in mutableTracks.enumerate() {
                     mutableTracks[key].albumObject = parsedAlbums[key]
                 }
-                dispatch_async(self.networkQueue, {
+                dispatch_async(networkQueue, {
+                    print("4. \(dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL))")
                     print("dispatched to serial queue")
                     self.mostRecentTrackResults.append(mutableTracks)
                     completionHandler(success: true, error: nil)

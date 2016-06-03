@@ -8,10 +8,15 @@
 
 import Foundation
 
+let networkQueue = dispatch_queue_create("com.throwbacktrack.mikemiller", DISPATCH_QUEUE_SERIAL)
+
 func getConfiguredSession() -> NSURLSession {
     let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
     config.timeoutIntervalForRequest = 15
-    return NSURLSession(configuration: config)
+    let queue = NSOperationQueue()
+    queue.underlyingQueue = networkQueue
+    let session = NSURLSession(configuration: config, delegate: nil, delegateQueue: queue)
+    return session
 }
 
 func parseData(dateToParse: NSData) -> NSDictionary? {
